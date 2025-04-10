@@ -60,41 +60,13 @@ _0x08.TextColor3 = Color3.fromRGB(255, 255, 255)
 _0x08.BorderSizePixel = 0
 _0x08.Parent = _0x03
 
-local _0x09 = false
-local _0x0A = nil
-local _0x0B = nil
-
-_0x03.InputBegan:Connect(function(_0x0C)
-    if _0x0C.UserInputType == Enum.UserInputType.MouseButton1 then
-        _0x09 = true
-        _0x0A = _0x0C.Position
-        _0x0B = _0x03.Position
-    end
-end)
-
-_0x03.InputEnded:Connect(function(_0x0C)
-    if _0x0C.UserInputType == Enum.UserInputType.MouseButton1 then
-        _0x09 = false
-    end
-end)
-
-game:GetService("UserInputService").InputChanged:Connect(function(_0x0C)
-    if _0x09 then
-        local _0x0D = _0x0C.Position - _0x0A
-        _0x03.Position = UDim2.new(_0x0B.X.Scale, _0x0B.X.Offset + _0x0D.X, _0x0B.Y.Scale, _0x0B.Y.Offset + _0x0D.Y)
-    end
-end)
+local _0x09 = game:GetService("ReplicatedStorage")
+local _0x0A = _0x09.DefaultChatSystemChatEvents.SayMessageRequest
 
 _0x06.MouseButton1Click:Connect(function()
-    local _0x0E = _0x05.Text
-    if _0x0E ~= "" then
-        -- Assurez-vous que DefaultChatSystemChatEvents est accessible
-        local chatEvent = game.ReplicatedStorage:WaitForChild("DefaultChatSystemChatEvents")
-        if chatEvent then
-            chatEvent.SayMessageRequest:FireServer(_0x0E, "All")
-        else
-            warn("Chat event not found!")
-        end
+    local _0x0B = _0x05.Text
+    if _0x0B ~= "" then
+        _0x0A:FireServer(_0x0B, "All")
         _0x05.Text = ""
     end
 end)
@@ -106,5 +78,3 @@ end)
 _0x08.MouseButton1Click:Connect(function()
     _0x02:Destroy()
 end)
-
-_0x02.Parent = _0x01:WaitForChild("PlayerGui")
