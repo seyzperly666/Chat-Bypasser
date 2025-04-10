@@ -87,7 +87,7 @@ clearButton.MouseButton1Click:Connect(function()
     textBox.Text = ""
 end)
 
--- Ajout de la croix pour fermer l'interface
+-- Croissance de la croix pour fermer l'interface
 local closeButton = Instance.new("TextButton")
 closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
 closeButton.Position = UDim2.new(0.9, -30, 0.1, 0)
@@ -101,3 +101,6 @@ closeButton.Parent = frame
 closeButton.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
+
+-- Pour tester l'affichage
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
